@@ -31,6 +31,18 @@ pipeline {
                 }
             }
 
+            stage("DockerStopContainer") {
+                steps {
+                sh "sudo docker stop calculador"
+                }
+            }
+
+            stage("DockerRemoveContainer") {
+                steps {
+                sh "sudo docker rm calculador"
+                }
+            }
+
             stage("RunContainer") {
                 steps {
                 sh "sudo docker run -d -p 9090:8090 --name calculador localhost:5000/calculadora"
