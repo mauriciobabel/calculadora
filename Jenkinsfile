@@ -21,19 +21,19 @@ pipeline {
 
             stage("CreateDockerImage") {
                 steps {
-                sh "docker build -t localhost:5000/calculadora ."
+                sh "sudo docker build -t localhost:5000/calculadora ."
                 }
             }
 
             stage("DockerPush") {
                 steps {
-                sh "docker push localhost:5000/calculadora"
+                sh "sudo docker push localhost:5000/calculadora"
                 }
             }
 
             stage("RunContainer") {
                 steps {
-                sh "docker run -d -p 9090:8090 --name calculador localhost:5000/calculadora"
+                sh "sudo docker run -d -p 9090:8090 --name calculador localhost:5000/calculadora"
                 }
             }
     }
