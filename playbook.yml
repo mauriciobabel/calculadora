@@ -12,7 +12,7 @@
       state: directory
   - name: configure Calculator as a service
     file:
-      path: /etc/init.d/calculadora
+      path: /etc/init.d/calculadora_7
       state: link
       force: yes
       src: /var/calculator/calculadora_7.jar
@@ -26,6 +26,6 @@
   handlers:
   - name: restart Calculator
     service:
-      name: calculadora
+      name: calculadora_7
       enabled: yes
       state: restarted
