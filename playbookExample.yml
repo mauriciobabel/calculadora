@@ -1,0 +1,19 @@
+- name: Mi primer ejemplo
+  hosts: nodo7
+  become: yes
+  gather_facts: no
+  vars:
+       estado: present
+
+  tasks:
+  - name: Instalar Apache
+    yum: name={{ item }} state={{ estado }}
+    with_items:
+     - httpd
+     - memcached
+     - php
+    notify: Arrancar Apache
+
+  handlers:
+  - name: Arrancar Apache
+    service: name=httpd state=restarted

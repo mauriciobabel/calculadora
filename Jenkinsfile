@@ -45,8 +45,15 @@ pipeline {
 
             stage("RunContainer") {
                 steps {
-                sh "sudo docker run -d -p 9090:8090 --name calculador localhost:5000/calculadora"
+                sh "sudo docker run -d -p 9090:8097 --name calculador localhost:5000/calculadora"
                 }
             }
+
+           stage("DeployOnProd") {
+                steps {
+                sh "ansible-playbook playbook.yml"
+                }
+            }
+
     }
 }
