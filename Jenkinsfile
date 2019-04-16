@@ -33,13 +33,7 @@ pipeline {
 
             stage("DockerStopContainer") {
                 steps {
-                sh "sudo docker stop calculador"
-                }
-            }
-
-            stage("DockerRemoveContainer") {
-                steps {
-                sh "sudo docker rm calculador"
+                sh "sudo docker stop calculador || true && sudo docker rm calculador || true"
                 }
             }
 
